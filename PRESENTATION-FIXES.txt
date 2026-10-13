@@ -1,0 +1,48 @@
+Verdant presentation fixes
+
+Original CSS and JavaScript files are preserved. All 15 HTML pages now load
+assets/css/presentation-fixes.css last, and use presentation-alignment.js
+in place of content-alignment.js where that script was already included.
+The new script retains the existing behavior and rounds matching peer text
+blocks to full line heights. Copy the complete Verdant folder to use it.
+
+Changes: remove external section gaps and footer gap; use compact responsive
+section padding; align heading introductions and keep dividers below text;
+stretch peer cards and align their actions; balance heading wrapping;
+provide contrasting button hover/focus states in light and dark themes.
+
+Text content is unchanged. Different copy cannot always wrap to an identical
+number of visible lines at every width, so peer text blocks reserve matching
+line space without truncation. Stacked cards retain natural text height.
+
+Validation: all 15 pages checked in headless Chrome at 375, 768, and 1440px
+in both themes for horizontal overflow, section spacing, and heading overlap.
+Homepage step cards have matching card, heading, and body heights. Homepage
+primary hover states checked: black/white in light mode, white/black in dark.
+
+Section refresh: separate section-refresh.css and section-refresh.js replace the
+coverage schematic at runtime with a photograph and neighborhood directory.
+Login columns now stretch equally on desktop, with tighter form spacing and
+a contextual delivery photo. Original page behaviors and source files remain.
+Checked both pages at 375/768/1440px in light and dark mode; no overflow.
+Desktop login columns each measure 743px. Password toggle and reset dialog checked.
+
+Dashboard update: dashboard-presentation.css hides the hero without removing
+original markup, tightens spacing, aligns table cells and form labels, and
+keeps peer cards equal in height. dashboard-alignment.js replaces the shared
+alignment include on dashboard.html only. Original dashboard CSS and logic
+are preserved. All 11 dashboard views checked at 375,768,1024,1440px in light
+and dark mode: no horizontal overflow or JavaScript errors. All six overview
+metric cards measure 150px at tablet and desktop widths. History filtering,
+tracking selection and request validation also checked. Existing sample-data
+and disconnected authentication/payment behavior remain as supplied.
+
+Latest updates: dashboard disclosure hidden at user request; login delivery
+photo replaced with pickup preparation checklist; shared footer spacing reduced
+with compact tablet rows and navigation links grouped into two columns.
+Existing source styles and behavior retained in separate presentation files.
+
+Peer alignment update: separate peer-alignment.css and peer-alignment.js align
+Home 2 prices and corresponding bullet rows. Services and Pricing introductions
+stretch to matching column heights with aligned top and bottom text boundaries.
+Verified mobile 375px, tablet 768/1024px, desktop 1440px in both themes.
