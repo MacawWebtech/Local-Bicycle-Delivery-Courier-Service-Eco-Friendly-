@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Verdant — "Storefront" layout (Flipkart-style)
+   Loaded last on every page. Layout/shell only: HTML, content, text
+   alignment and content heights inside each section are not changed.
+   Palette stays black / white / natural green (#527f5b); the page
+   background is a very light tint of that same green.
+   ========================================================================== */
+
+:root{
+  --fk-bg:color-mix(in srgb,var(--primary) 9%,#fff);
+  --fk-dark:color-mix(in srgb,var(--primary) 22%,#000);
+}
+html[data-theme="dark"]{
+  --fk-bg:color-mix(in srgb,var(--primary) 12%,#000);
+}
+
+/* ---- 1. Page canvas: tinted background, sections become white cards ----- */
+html,body{background:var(--fk-bg)}
+main{
+  background:transparent;
+  display:flex;flex-direction:column;gap:10px;
+  width:100%;max-width:1480px;margin-inline:auto;padding:10px 12px 0;
+}
+main>section{
+  background:var(--background);
+  border-radius:2px;
+  box-shadow:0 1px 3px rgba(0,0,0,.18);
+  overflow:clip;
+}
+main>section.final-cta,
+main>section[class*="cta"]{background:var(--primary)}
+html[data-theme="dark"] main>section{box-shadow:0 0 0 1px rgba(82,127,91,.45)}
+section[id],footer[id]{scroll-margin-top:130px}
+html{scroll-padding-top:130px}
+
+/* ---- 2. Top announcement: slim black strip ----------------------------- */
+.announcement{background:#000;color:#fff}
+html[data-theme="dark"] .announcement{background:var(--primary);color:#000}
+
+/* ---- 3. Header: bold brand bar + white category strip ------------------ */
+.site-header{
+  background:var(--primary);color:#fff;
+  padding:10px 30px 0;gap:0 24px;
+  border-bottom:0;box-shadow:0 2px 4px rgba(0,0,0,.28);
+}
+.site-header .brand{color:#fff;order:1;margin-inline-end:auto}
+.header-actions{order:2}
+.site-header .icon-button,
+.site-header .direction-button{border-color:#fff;color:#fff;border-radius:2px}
+.site-header .header-cta{background:#fff;color:var(--primary);border-radius:2px}
+.site-header .menu-toggle{color:#fff}
+
+/* Category strip (the existing nav, re-rowed) */
+.site-header nav{order:3}
+.site-header nav a,
+.site-header nav .home-menu-label{color:#000}
+.site-header nav a.active,
+.site-header nav .home-menu-label.active{color:var(--primary);font-weight:700}
+.site-header nav .business-login{color:var(--primary);font-weight:700}
+.site-header nav .home-menu-label{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px}
+.site-header nav .home-menu-label::-webkit-details-marker{display:none}
+
+@media (min-width:1025px){
+  .site-header{flex-wrap:wrap;align-items:center;justify-content:flex-start}
+  .site-header>.brand,
+  .site-header>.header-actions{padding-bottom:10px}
+  .site-header nav{
+    flex:0 0 auto;width:calc(100% + 60px);margin-inline:-30px;
+    padding-inline:30px;background:#fff;
+    justify-content:center;gap:38px;
+    border-top:1px solid rgba(0,0,0,.08);
+  }
+  .site-header nav a,
+  .site-header nav .home-menu-label{min-height:44px}
+  .site-header nav>a:hover,
+  .site-header nav .home-menu-label:hover{color:var(--primary)}
+}
+
+/* Mobile / tablet: same green bar, nav opens as a white panel */
+@media (max-width:1024px){
+  .site-header{padding-block:12px}
+  .site-header nav{background:#fff;border-top:0;margin-top:8px;padding:8px 12px}
+  .site-header nav.open{display:flex}
+  .site-header nav a.active{background:transparent}
+}
+
+/* Dark mode header */
+html[data-theme="dark"] .site-header{background:var(--fk-dark);box-shadow:0 1px 0 var(--primary)}
+html[data-theme="dark"] .site-header .header-cta{background:var(--primary);color:#000}
+html[data-theme="dark"] .site-header .icon-button,
+html[data-theme="dark"] .site-header .direction-button{border-color:var(--primary)}
+html[data-theme="dark"] .site-header nav{background:#000}
+html[data-theme="dark"] .site-header nav a,
+html[data-theme="dark"] .site-header nav .home-menu-label{color:#fff}
+html[data-theme="dark"] .site-header nav a.active,
+html[data-theme="dark"] .site-header nav .home-menu-label.active,
+html[data-theme="dark"] .site-header nav .business-login{color:var(--primary)}
+
+/* ---- 4. Section headers: title left, filled "view all" button right ---- */
+main .section-heading{box-shadow:0 1px 0 var(--primary)}
+main .section-heading .button-outline{
+  background:var(--primary);color:#fff;border-color:var(--primary);border-radius:2px;
+}
+html[data-theme="dark"] main .section-heading .button-outline{color:#000}
+
+/* ---- 5. Tiles: sharp corners, lift on hover (no size/position change) -- */
+.button,.icon-button,.direction-button,input,select,textarea,
+.estimate-form,.form-result,.service-card,.industries article,.zone-grid article,
+.testimonial-grid figure,.photo-label,.tracking-panel,.newsletter-input input,dialog{border-radius:2px}
+main article,main figure{transition:box-shadow .2s ease,border-color .2s ease}
+main article:hover,main figure:hover{
+  box-shadow:0 4px 16px rgba(0,0,0,.18);border-color:var(--primary);
+}
+.button-primary:hover{box-shadow:0 2px 6px rgba(0,0,0,.3)}
+
+/* ---- 6. Footer: dark block like a store footer ------------------------ */
+footer{
+  background:#000;color:#fff;margin-top:10px;
+}
+html[data-theme="dark"] footer{background:var(--fk-dark)}
+footer .brand,footer h2,footer p,footer a,footer .small-copy,footer .text-link,
+footer .footer-bottom{color:#fff}
+footer .footer-bottom{border-top-color:rgba(255,255,255,.28)}
+footer a:hover{color:var(--primary)}
+footer input{color:#000}
+
+/* Footer newsletter field readable on the dark footer */
+footer .newsletter-input{border:1px solid #fff;border-radius:2px;background:#fff}
+footer .newsletter-input input{color:#000;border-radius:0}
+footer .newsletter-input input::placeholder{color:#000;opacity:.65}
+footer .newsletter-input button{color:var(--primary);background:#fff}
+
+html[data-theme="dark"] .site-header .brand{color:#fff}
+
+/* Shared full-width canvas; retain the existing section content gutters. */
+main{max-width:none;padding-inline:0}
+main>section{width:100%;max-width:none;margin-inline:0;min-width:0}
+
+/* Keep the brand at the leading edge and all controls at the trailing edge. */
+@media(max-width:1024px){
+  .site-header{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;padding:12px var(--page-pad)}
+  .site-header>.brand{grid-column:1;grid-row:1;order:0;margin:0;justify-self:start;white-space:nowrap}
+  .site-header>.header-actions{grid-column:2;grid-row:1;order:0;gap:6px}
+  .site-header>.menu-toggle{grid-column:3;grid-row:1;order:0;display:flex;margin:0}
+  .site-header .icon-button,.site-header .direction-button{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;flex-shrink:0}
+  .site-header .header-cta{display:none}
+  .site-header>nav{grid-column:1/-1;grid-row:2;order:0;width:100%;min-width:0;margin:0;padding:8px 12px;max-height:calc(100dvh - 120px);overflow-y:auto;overscroll-behavior:contain}
+  .site-header>nav:not(.open){display:none}
+  .site-header>nav.open{display:flex}
+  .site-header nav .home-dropdown-panel{position:static;min-width:0;width:100%;margin-inline:0}
+}
+@media(max-width:379px){
+  .site-header{padding-inline:12px;gap:4px}
+  .site-header>.brand{font-size:23px;gap:5px}
+  .site-header .brand-icon svg{width:28px;height:28px}
+  .site-header>.header-actions{gap:4px}
+}
+
+/* Center the two homepage closing banners, including their controls. */
+body:has(main>#home) .final-cta,
+.home-two .final-cta{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center}
+body:has(main>#home) .final-cta>:not(.cta-bike),
+.home-two .final-cta>:not(.cta-bike){grid-column:auto;max-width:100%;margin-block:0 24px}
+body:has(main>#home) .final-cta>h2,
+.home-two .final-cta>h2{width:100%;max-width:1100px}
+body:has(main>#home) .final-cta>.button-group,
+.home-two .final-cta>.button-group{justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:0}
+body:has(main>#home) .final-cta>.cta-bike,
+.home-two .final-cta>.cta-bike{position:static;grid-column:auto;grid-row:auto;width:112px;height:112px;margin:24px auto 0;align-self:center}
+
+/* Give the coverage questions a balanced introduction and responsive list. */
+.areas-page .service-faq{padding-block:40px;align-items:start;gap:32px}
+.areas-page .service-faq>div{min-width:0}
+.areas-page .service-faq>div>p:last-child{margin-bottom:0}
+
+/* Keep pricing titles inside their heading panel with balanced spacing. */
+.pricing-page :is(.rates-section,.business-rates)>.section-heading{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;gap:24px 40px;padding-block:24px;margin-bottom:24px;
+}
+.pricing-page :is(.rates-section,.business-rates)>.section-heading>div{min-width:0}
+.pricing-page :is(.rates-section,.business-rates)>.section-heading h2{margin-bottom:0}
+.pricing-page :is(.rates-section,.business-rates)>.section-heading>p{padding-top:0;margin:0;max-width:none;min-width:0}
+@media(max-width:1024px){
+  .areas-page .service-faq{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:32px}
+  .pricing-page :is(.rates-section,.business-rates)>.section-heading{grid-template-columns:minmax(0,1fr);gap:16px;padding-block:24px}
+}
+@media(max-width:639px){
+  body:has(main>#home) .final-cta>p,.home-two .final-cta>p{max-width:100%}
+  body:has(main>#home) .final-cta>.button-group,.home-two .final-cta>.button-group{width:100%;align-items:center}
+  body:has(main>#home) .final-cta>.cta-bike,.home-two .final-cta>.cta-bike{width:88px;height:88px}
+}
+
+/* Homepage banner text stays centered in either layout direction. */
+body:has(main>#home) .final-cta>:is(h2,p),
+.home-two .final-cta>:is(h2,p){text-align:center;margin-inline:auto}
